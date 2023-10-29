@@ -1,9 +1,9 @@
 <script lang="ts">
-
+	export let getData: svelte.JSX.MouseEventHandler<HTMLButtonElement> | null = null;
 	function summarizeNotes() {
 		console.log('Summarize button clicked...');
+		getData();
 	}
-
 	let fromDateValue = 'From...'
 	let toDateValue = 'To...'
 </script>
