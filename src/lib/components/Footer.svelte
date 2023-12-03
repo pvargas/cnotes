@@ -20,7 +20,7 @@
 		width: calc(100vw - 16%);
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
-		border-top: 1px solid var(--text-secondary-color);
+		border-top: 1px solid var(--tertiary-color);
 		font-size: small;
 		color: var(--text-secondary-color);
 		background-color: var(--content-bg-color);

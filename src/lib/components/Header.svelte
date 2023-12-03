@@ -23,6 +23,7 @@
 		background-color: var(--header-bg-color);
 		display: flex;
 		flex-direction: row;
+		z-index: 100;
 	}
 	#header > h1 {
 		margin-top: auto;
@@ -30,12 +31,13 @@
 		font-size: 2rem;
 	}
 	h1 > span {
-		color: var(--text-secondary-color);
+		color: var(--primary-color);
 	}
 	.menu_button {
 		margin-left: auto;
 		margin-top: auto;
 		margin-bottom: auto;
 		height: 1.5rem;
+		color: var(--primary-color);
 	}
 </style>
