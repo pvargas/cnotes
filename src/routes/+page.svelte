@@ -17,11 +17,14 @@
   :global(html) {
     --text-primary-color: #E6EdF3;
     --text-secondary-color: #7D8590;
-		--content-bg-color: #0D1117;
+		--content-bg-color: #11151a;
     --header-bg-color: #161B22;
     --container-padding: 3rem;
     --header-height: 3.5rem;
     --footer-height: 4rem;
+    --primary-color: #FF3E00;
+    --secondary-color: #40B3FF;
+    --tertiary-color: #676778;
   }
 	:global(body) {
 		background-color: var(--content-bg-color);

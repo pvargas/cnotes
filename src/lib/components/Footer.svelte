@@ -3,7 +3,7 @@
 
 <footer id="footer">
 	<p>
-		<b><i>C Notes<i/></b> was made for the course <i>CS-6440 Intro to Health Informatics</i> offered by <i>Georgia Tech<i/>
+		<b><i>C Notes (version 1.0.3) <i/></b> was made for the course <i>CS-6440 Intro to Health Informatics</i> offered by <i>Georgia Tech<i/>
 	<br/>
 	<br/>
 		© 2023 Pablo Vargas
@@ -20,7 +20,7 @@
 		width: calc(100vw - 16%);
 		padding-top: 1.5rem;
 		padding-bottom: 1.5rem;
-		border-top: 1px solid var(--text-secondary-color);
+		border-top: 1px solid var(--tertiary-color);
 		font-size: small;
 		color: var(--text-secondary-color);
 		background-color: var(--content-bg-color);
