@@ -8,7 +8,8 @@
 	export let loading = false;
 	const format = "yyyy-MM-dd"
 	function dateToFormattedString(date: Date): string {
-		const formatted =  date.getFullYear() + "-" + date.getMonth().toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0');
+		const month = date.getMonth() + 1;
+		const formatted =  date.getFullYear() + "-" + month.toString().padStart(2, '0') + "-" + date.getDate().toString().padStart(2, '0');
 		return formatted;
 	}
 	function fetchNotes() {

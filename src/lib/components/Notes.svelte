@@ -5,23 +5,35 @@
   let summarizedNotes = "";
   let loading = false;
   let notesAvailable = false;
+  let resultType = "";
   function setLoading(val: boolean) {
     loading = val;
   }
   async function getData(startDate: Date, endDate: Date, patientId = null) {
     console.log("get data called")
-    console.log("startDate", startDate)
-    console.log("endDate", endDate)
     setLoading(true);
+    rawNotes= "";
+    summarizedNotes = "";
     notesAvailable = false;
     let result = null;
     
-    const response = await fetch(`/api/clinical?startDate=${startDate}&startDate=${startDate}&patientId=${patientId}`);
+    const response = await fetch(`/api/clinical?startDate=${startDate}&endDate=${endDate}&patientId=${patientId}`);
     if (response) {
-      result = await response.json();
-      rawNotes = result.result;
-      console.log(rawNotes);
-      notesAvailable = true;
+      if (response.status === 200) {
+        result = await response.json();
+        if (result.result === "nothing") {          
+          resultType = result.result;   
+          console.log("No results found");
+        } else {
+          rawNotes = result.result;
+          console.log(rawNotes);
+          notesAvailable = true;
+          resultType = "";
+        }
+      } else {
+        console.log("Request resulted in an error.");
+        resultType = "error";
+      }
     }
     setLoading(false);
 	}
@@ -35,7 +47,6 @@
       if (response) {
         result = await response.json();
         summarizedNotes = result.result; 
-        console.log(result);
       }
     } else {
       console.error("No notes to summarize.")
@@ -54,16 +65,22 @@
     <div  class='center'>
       <Circle2 size="100" />
     </div>
-    {:else if !(summarizedNotes || rawNotes)}
+    {:else if !(summarizedNotes || rawNotes) && resultType !== "nothing" && resultType !== "error"}
       <p class='center blue'>Click on the <span> <i> Get Clinical Notes <i/></span> button above to get started.</p>
-    {:else}       
+    {:else}     
+      {#if resultType === "nothing" }
+      <p class='center blue'>No results found.<span> Use a different date range </span> and try again.</p>
+      {/if}     
+      {#if resultType === "error" }
+      <p class='center blue'>Unable to retrieve clinical data.<span> Please wait a few seconds </span> before trying again.</p>
+      {/if}      
       {#if rawNotes && !summarizedNotes}
-        <p class='center_v blue'>Below is your clinical data. Click on the <span> <i> Summarize <i/></span> button above to get a summary.</p>
+        <p class='center_v blue'>Below is your clinical data. Click the <span> <i> Summarize <i/></span> button above to get a summary.</p>
       {/if}     
       {#if summarizedNotes }
-        <p class='center_v blue'>This is your summarized data.</p>
+        <p class='center_v blue'>This is your <span>summarized</span> data.</p>
       {/if}
-      <p>{notesAvailable? summarizedNotes || rawNotes : null}</p>
+      <p>{notesAvailable? summarizedNotes || rawNotes : ""}</p>
     {/if}
   </div>
   

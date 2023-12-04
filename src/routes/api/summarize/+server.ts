@@ -6,7 +6,6 @@ const TOKEN_LIMIT = 2000;
 
 export async function POST({ request } : any) {
   const contents = await request.json();
-  console.debug("POST to api/summarizer")
   const result = await summarizeText(contents.input)
 	return json({result: result}, { status: 200 });
 }
