@@ -1,6 +1,6 @@
 # Technical User Manual
 
-## Starting a Local Development Instance
+## Starting a Local Instance
 
 1. Install dependencies. 
 
@@ -56,3 +56,44 @@ If the application started successfully, you should be greeted by the screen bel
 4. Once the clinical notes have been retrieved, click on the `Summarize` button to generate a summary of the clinical notes.
 
 5. (Optionally) if running locally, you may modify the contents of `bundle.json`, found at the root of this repo, in order to change the input data (the raw, un-summarized notes).
+
+
+
+## Technical Description
+
+This web application was originally meant to query an external FHIR server in order to retrieve the clinical notes for a patient for a given date range, but instead it now loads the data from a local JSON file, `bundle.json`.
+
+The pertinent is then extracted from the loaded file, and the clinical notes will be parsed from the DocumentReference 
+resources found within the Bundle.
+
+The resulting dataset is then be sent to an external language model for it to be summarized. This process may have to be repeated several times depending on the length of the input data. This is achieved through use of Open AI's ChatGPT API. Finally, the summarized data is displayed to the user.
+
+
+
+<img 
+    style="display: block; 
+           margin: auto;
+           width: 80%; margin-bottom: 0"
+    src="./new_diagram.png" 
+    alt="Architectural Diagram">
+</img>
+<p  style="margin: auto; margin-top: 0; text-align: center;">
+    Figure 1: updated architectural diagram.
+</p>
+
+
+</br>
+</br>
+
+<img 
+    style="display: block; 
+           margin: auto;
+           width: 40%; margin-bottom: 0"
+    src="./old_diagram.png" 
+    alt="Architectural Diagram">
+</img>
+
+<p  style="margin: auto; margin-top: 0; text-align: center;">
+    Figure 2: original architectural diagram, as presented in project proposal.
+</p>
+

@@ -10,7 +10,9 @@
 
 ## Overview
 
-CNotes is a web application that allows users to view a simpler summarized version of their clinical notes data.
+CNotes is a web application that allows users to view a simpler summarized version of their clinical notes data. To use the web app visit https://cnotes-84a3dd9afa2f.herokuapp.com/.
+
+This application is built using [SvelteKit](https://kit.svelte.dev/).
 
 
 ## Starting a Local Development Instance
@@ -71,6 +73,17 @@ docker-compose build
 
 The command above will result in a Docker image called `cnotes`.
 
+## How to Use the Application
+**NOTE:** since this application is currently loading bundles from local files instead of fetching from a live FHIR server, features like the date range selection currently have no effect.
+
+1. Visit the live application at https://cnotes-84a3dd9afa2f.herokuapp.com/, or the local server at http://localhost:5173/.
+2. Select a date range from for which you would like to search clinical notes for.
+3. Click on the `Get Clinical Notes` button to retrieve clinical notes.
+4. Once the clinical notes have been retrieved, click on the `Summarize` button to generate a summary of the clinical notes.
+
+5. (Optionally) if running locally, you may modify the contents of `bundle.json`, found at the root of this repo, in order to change the input data (the raw, un-summarized notes).
+
+
 ## Technical Description
 
 This web application was originally meant to query an external FHIR server in order to retrieve the clinical notes for a patient for a given date range, but instead it now loads the data from a local JSON file, `bundle.json`.
@@ -92,6 +105,23 @@ The resulting dataset is then be sent to an external language model for it to be
 <p  style="margin: auto; margin-top: 0; text-align: center;">
     Figure 1: updated architectural diagram.
 </p>
+
+
+</br>
+</br>
+
+<img 
+    style="display: block; 
+           margin: auto;
+           width: 40%; margin-bottom: 0"
+    src="./Documentation/old_diagram.png" 
+    alt="Architectural Diagram">
+</img>
+
+<p  style="margin: auto; margin-top: 0; text-align: center;">
+    Figure 2: original architectural diagram, as presented in project proposal.
+</p>
+
 
 
 ## Glossary
