@@ -2,8 +2,7 @@
 
 <img 
     style="display: block; 
-           margin: auto;
-           width: 80%;"
+           margin: auto;"
     src="./Documentation/screen_recording.gif" 
     alt="screen recording">
 </img>
