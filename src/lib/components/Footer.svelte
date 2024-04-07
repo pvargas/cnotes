@@ -3,7 +3,7 @@
 
 <footer id="footer">
 	<p>
-		<b><i>C Notes (version 1.0.3) <i/></b> was made for the course <i>CS-6440 Intro to Health Informatics</i> offered by <i>Georgia Tech<i/>
+		<b><i>C Notes (version 1.0.3) <i/></b>
 	<br/>
 	<br/>
 		© 2023 Pablo Vargas

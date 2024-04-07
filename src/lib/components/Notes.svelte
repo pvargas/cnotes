@@ -10,7 +10,6 @@
     loading = val;
   }
   async function getData(startDate: Date, endDate: Date, patientId = null) {
-    console.log("get data called")
     setLoading(true);
     rawNotes= "";
     summarizedNotes = "";
@@ -23,22 +22,21 @@
         result = await response.json();
         if (result.result === "nothing") {          
           resultType = result.result;   
-          console.log("No results found");
+          console.debug("No results found");
         } else {
           rawNotes = result.result;
-          console.log(rawNotes);
           notesAvailable = true;
           resultType = "";
         }
       } else {
-        console.log("Request resulted in an error.");
+        console.debug("Request resulted in an error.");
         resultType = "error";
       }
     }
     setLoading(false);
 	}
   async function summarizeData() {	
-    console.log("summarizeData called")
+    console.debug("summarizeData called")
     if (rawNotes) {
       setLoading(true);
       let result = null;

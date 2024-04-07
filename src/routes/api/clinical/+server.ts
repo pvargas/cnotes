@@ -1,5 +1,5 @@
 import { json } from '@sveltejs/kit';
-import { FHIR_SERVER_URL, FHIR_U, FHIR_P } from '$env/static/private';
+import { FHIR_SERVER_URL } from '$env/static/private';
 import * as fs from 'fs';
 
 export async function GET({ url } : any) {
@@ -7,7 +7,7 @@ export async function GET({ url } : any) {
   try {
     results = await getClinicalData(url.searchParams);    
   } catch (error) {
-    console.log("error", results);
+    console.debug("error", results);
     return json({result: `Error: ${error}`}, { status: 500 });
   }
   if (results) {
@@ -43,7 +43,6 @@ async function fetchClinicalData(params: any) {
   const endDate = params.get("endDate");
   let patient = params.get("patientId");
   const headers = new Headers();
-  headers.set('Authorization', 'Basic ' + Buffer.from(FHIR_U + ":" + FHIR_P).toString('base64'));
 
   const fetchUrl = `${FHIR_SERVER_URL}/DocumentReference?date=ge${startDate}&date=le${endDate}&patient=${patient}&type=clinical-notes&_pretty=true`;
   console.debug('GET:', fetchUrl);

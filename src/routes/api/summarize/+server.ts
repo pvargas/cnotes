@@ -30,12 +30,12 @@ async function summarizeText(input: string, temperature: number = 0.5, maxTokens
   if (numberOfTokens <= TOKEN_LIMIT) {
     return await summarize(input, temperature, maxTokens);
   } else {
-    console.log("Token limit exceeded. Splitting input...");
+    console.debug("Token limit exceeded. Splitting input...");
     let result = "";
     // 1 token ~= 4 characters
     const partitionedText = partitionInput(input, maxTokens * 4);
 
-    console.log('number of partitions:', partitionedText.length);    
+    console.debug('number of partitions:', partitionedText.length);    
     for (const partition of partitionedText) {
       result += await summarize(partition, temperature, maxTokens);
     }
